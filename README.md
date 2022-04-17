@@ -3,7 +3,9 @@
 ## **Overview of the Analysis**
 
 
-*  We are endeavoring to build a trading algorithm that will outperform a buy and hold strategy for the S&P 500, and evaluate whether or not this program could be used for trading alternative asset classes that are correlated to the equity markets like crypto. Using a dataframe consisting of one year hourly S&P 500 data, the analysis first creates signals using MACD, RSI, Stochastic, and a custom (combination of MACd and Stochastic indicators) technical indicators. The applicable training and test data is then exported to a csv that feeds two machine learning modules in the team's second jupyter notebook. 
+*  We are endeavoring to build a trading algorithm that will outperform a buy and hold strategy for the S&P 500, and evaluate whether or not this program could be used for trading alternative asset classes that are correlated to the equity markets like crypto. Using a dataframe consisting of one year hourly S&P 500 data, the analysis first creates signals using MACD, RSI, Stochastic, and a custom (combination of MACd and Stochastic indicators) technical indicators. The applicable training and test data is then exported to a csv that feeds the machine learning (ml) modules housed in the team's ml jupyter notebooks.  
+
+* A few critical libraries and tools utilized are: sklearn, imblearn, Tensorflow, Keras, YahooFinance, and Pandas ta.
 
 * The questions we set out to answer are:
   1) What technical indicators create the most consistent profit trading?
@@ -15,6 +17,7 @@
 
    * S&P Cumulative Returns Over a One Year Period
     ![S&P Return](Images/spy_cum_return_oneyear.png)
+
   * S&P Price per Share Over One Year
 
     ![S&P Price Per Share](Images/spy_pricepershare_oneyear.png)   
@@ -23,7 +26,7 @@
 
 **Step 3:** Create signals & Entry/Exit position. Each technical indicator requires a strategy, the logic of which is assigned and appended to the dataframe in separate columns. The model and end user need to be able to ascertain the current position, buy/sell/hold signal, and total portfolio value - the logic for these datapoints are coded into each indicator notebook. Each entry/exit signal is applied to the close price and assumed number of shares held to evaluate each indicator's performance (profit/loss). Each indicator's resulting dataframe is exported to a csv file in the Resources folder and used for machine learning models' training data. **The most profitable indicator strategy is the custom MACD/Stochastic algorithm**.
 
-**Step 4:** Run the indicator algorithms through machine learning models and understand which combination of the two performs best. Each indicator's machine learning notebook is located in the same directory as this README. The team tested the algos with logistic regression, random forest, and a neural network and concluded that, for the team's needs, **the best machine learning model is a neural network**.
+**Step 4:** Run the indicator algorithms through machine learning models and understand which combination of the two performs best. Each indicator's machine learning notebook is located in the same directory as this README. The team tested the algos via RandomOverSampler, logistic regression, random forest, and a neural network and concluded that, for the team's needs, **the best machine learning model is a neural network**.
 
 **Step 5:** Can the algos and machine learning models utilized with S&P500 data be used with BTC? Yes! Apply the custom indicator algorithm to BTC in the machine learning notebook titled 'bitcoin_ml'. The custom algo and neural network outperforms BTC by 16%!
 
@@ -70,19 +73,14 @@
     ![Custom Value](Images/custom_value.png)
 
 
-* Machine Learning Results:
-  * Logistic Regresssion - Custom Indicator
+* Highlight of Machine Learning Results:
 
-    ![ML Placeholder](baseline_plot_smacng.png)
-  * Random Forest - Custom Indicator
+  * Neural Network Stats- Custom Indicator: The Winning Combo!
 
-    ![ML Placeholder](svm_smacng.png)
-  * Neural Network - Custom Indicator: The Winning Combo!
+    ![Nueral Network Stats](Images/nn_custom_stats.png)
+  * Neural Network MACD Visualization
 
-    ![ML Placeholder](lr_plot_smacng.png)
-  * ML 4th Visualization
-
-    ![ML Placeholder](lrmodel_smacng.png) 
+    ![MACD nn viz](Images/nn_macd.png) 
 
 ## Summary
 
@@ -91,6 +89,13 @@
   1) What technical indicators create the most consistent profit trading? An indicator entailing MACD and Stochastic strategies performs best.
   2) How can machine learning improve the technical trading algorithms and which model performs the best? A neural network is the best machine learning model evaluated by the team. Using OneHotEncoder enables a neural network to capture all categorical features (in addition to the numeric ones) which improves its prediction capabilities.
   3) Can an algorithm trained and tested on equities data be re-used for crypto data? Yes! A neural network driven by the team's custom technical indicator algo outperformed BTC by 16%.
+
+* Sources:
+
+      1. MACD explanation (slide 6 of ppt presentation)- Wikipedia
+
+      2. Neural network vizualization: http://alexlenail.me/NN-SVG/index.html 
+
 
 
 
